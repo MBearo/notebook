@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <video id="video"></video>
+  <canvas id="canvas" width="640" height="480"></canvas>
+  <button id="shoot">截屏</button>
+  <script>
+    let ctx=document.querySelector('#canvas').getContext('2d')
+    document.getElementById('shoot').addEventListener('click',e=>{
+      ctx.drawImage(document.getElementById('video'),0,0,640,480)
+    })
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(function (stream) {
+        /* 使用这个stream stream */
+        console.log(stream)
+        var video = document.getElementById('video');
+        video.srcObject = stream;
+        video.onloadedmetadata = function (e) {
+          video.play();
+        };
+      })
+      .catch(function (err) {
+        /* 处理error */
+        console.log(err)
+      });  
+  </script>
+</body>
+
+</html>
