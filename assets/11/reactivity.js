@@ -4,7 +4,9 @@ const toRaw = new WeakMap()// {代理过的对象:原对象}
 function isObject (val) {
   return typeof val === 'object' && val !== null
 }
-
+function hasOwn (target, key) {
+  return Object.prototype.hasOwnProperty.call(target, key)
+}
 function reactive (target) {
   return createReactiveObject(target)
 }
@@ -33,7 +35,16 @@ function createReactiveObject (target) {
     },
     set (target, key, value, receiver) {
       console.log('set', target, key, value)
+      const hadKey = hasOwn(target, key)
+      const oldValue = target[value]
       const result = Reflect.set(target, key, value, receiver)
+      // 如果之前没有这个属性
+      if (!hadKey) {
+        console.log('新增属性', key, value)
+      } else if (oldValue !== value) { // 属性更改过了
+        console.log('修改属性', key, value)
+      }
+
       return result
     },
     deleteProperty (target, key, receiver) {
