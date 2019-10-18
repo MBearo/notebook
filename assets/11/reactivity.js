@@ -1,6 +1,6 @@
 const toProxy = new WeakMap() // {原对象:代理过的对象}
 const toRaw = new WeakMap()// {代理过的对象:原对象}
-
+const activeEffectStacks = []
 function isObject (val) {
   return typeof val === 'object' && val !== null
 }
@@ -41,7 +41,7 @@ function createReactiveObject (target) {
       // 如果之前没有这个属性
       if (!hadKey) {
         console.log('新增属性', key, value)
-      } else if (oldValue !== value) { // 属性更改过了
+      } else if (oldValue !== value) { // 为了屏蔽无意义的修改
         console.log('修改属性', key, value)
       }
 
@@ -57,7 +57,21 @@ function createReactiveObject (target) {
   toRaw.set(observed, target)
   return observed
 }
-
+function effect (fn) {
+  const effect = createReactiveEffect(fn)
+  // 默认执行一次
+  effect()
+}
+function createReactiveEffect (fn) {
+  const effect = function () {
+    return run(effect, fn)
+  }
+  return effect
+}
+function run (effect, fn) {
+  activeEffectStacks.push(effect)
+  fn()
+}
 const proxy = reactive({
   a: {
     b: {
@@ -65,4 +79,7 @@ const proxy = reactive({
     }
   }
 })
-console.log(proxy.a.b.c)
+effect(() => {
+  console.log(proxy.a.b.c)
+})
+proxy.a.b.c = 10
