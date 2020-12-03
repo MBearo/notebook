@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    html,
+    body {
+      background-color: #ccc;
+    }
+
+    .c {
+      font-size: 50px;
+      background-color: white;
+      margin-bottom: 20px;
+    }
+
+    .a {
+      line-height: 100px;
+      background-color: seagreen;
+    }
+
+    .b {
+      background-color: tan;
+      line-height: 70px;
+      display: inline-block;
+    }
+
+    .line {
+      display: inline-block;
+      overflow: visible;
+      height: 1px;
+      width: 1px;
+    }
+
+    .line>div {
+      width: 1000px;
+      height: 1px;
+
+    }
+
+    .baseline {
+      vertical-align: baseline;
+    }
+
+    .baseline>div {
+      background-color: red;
+    }
+
+    .top {
+      vertical-align: top;
+    }
+
+    .top>div {
+      background-color: blue;
+    }
+
+    .bottom {
+      vertical-align: bottom;
+    }
+
+    .bottom>div {
+      background-color:goldenrod;
+    }
+
+    .text-top {
+      vertical-align: text-top;
+    }
+
+    .text-top>div {
+      background-color: green;
+    }
+
+    .text-bottom {
+      vertical-align: text-bottom;
+    }
+
+    .text-bottom>div {
+      background-color: fuchsia;
+    }
+
+    .b2 {
+      height: 80px;
+      width: 250px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- <div class="c1 c">
+    <div class="line baseline">
+      <div></div>
+    </div>
+    <div class="line top">
+      <div></div>
+    </div>
+    <div class="line bottom">
+      <div></div>
+    </div>
+    <div class="line text-top">
+      <div></div>
+    </div>
+    <div class="line text-bottom">
+      <div></div>
+    </div>
+    <span class="a">Text</span>
+    <span class="b">Nihao</span>
+    <span>好</span>
+  </div>
+  <div class="c2 c">
+    <div class="line baseline">
+      <div></div>
+    </div>
+    <div class="line top">
+      <div></div>
+    </div>
+    <div class="line bottom">
+      <div></div>
+    </div>
+    <span class="a">Text</span>
+    <span class="b b2"></span>
+  </div>
+  <div class="c2 c">
+    <div class="line baseline">
+      <div></div>
+    </div>
+    <div class="line top">
+      <div></div>
+    </div>
+    <div class="line bottom">
+      <div></div>
+    </div>
+    <span class="a">Text</span>
+    <span class="b b2">Nihao 好</span>
+  </div> -->
+
+  <div style="background-color: white;font-size: 50px;">
+    <div class="line baseline">
+      <div></div>
+    </div>
+    <div class="line top">
+      <div></div>
+    </div>
+    <div class="line bottom">
+      <div></div>
+    </div>
+    <div class="line text-top">
+      <div></div>
+    </div>
+    <div class="line text-bottom">
+      <div></div>
+    </div>
+    <span style="background-color: teal;">Hellox</span>
+    <span style="background-color: thistle;line-height: 100px;">文字</span>
+    <div style="display: inline-block;background-color: turquoise;width: 20px;height:400px ;">s</div>
+  </div>
+</body>
+
+</html>
