@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    html,
+    body {
+      background-color: #f5f5f5;
+    }
+
+    .font.large {
+      font-size: 50px;
+    }
+
+    .font {
+      white-space: nowrap;
+      line-height: 1;
+    }
+
+    .font.tall-line-height {
+      line-height: 2;
+    }
+
+    .font.short-line-height {
+      line-height: 0.5;
+    }
+
+    .line.green {
+      border-color: #16e807;
+    }
+
+    .line.red {
+      border-color: #f00008;
+    }
+
+    .line.blue {
+      border-color: #0919ff;
+    }
+
+    .line.dotted {
+      border-style: dotted;
+    }
+
+    .line {
+      display: inline-block;
+      width: 100%;
+      margin-right: -100%;
+      position: relative;
+      z-index: 10;
+      border-top: 1px solid #000;
+    }
+
+    .baseline {
+      vertical-align: baseline;
+    }
+
+    .text-top {
+      vertical-align: text-top;
+    }
+
+    .text-bottom {
+      vertical-align: text-bottom;
+    }
+
+    .top {
+      vertical-align: top;
+    }
+
+    .bottom {
+      vertical-align: bottom;
+    }
+
+    .center {
+      text-align: center;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .box>div {
+      vertical-align: middle;
+      display: inline-block;
+      margin-right: 50px;
+    }
+
+    .inline-overlay {
+      display: inline-block;
+      width: 100%;
+      margin-right: -100%;
+      position: relative;
+      z-index: 10;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div class="large font">
+      <span class="green dotted line text-top"> </span>
+      <span class="green dotted line text-bottom"> </span>
+      <span class="red dotted line top"> </span>
+      <span class="red dotted line bottom"> </span>
+      <span class="blue dotted line baseline"> </span>
+      <span class="center">aAx qQ</span>
+    </div>
+    <div class="large font tall-line-height">
+      <span class="green dotted line text-top"> </span>
+      <span class="green dotted line text-bottom"> </span>
+      <span class="red dotted line top"> </span>
+      <span class="red dotted line bottom"> </span>
+      <span class="blue dotted line baseline"> </span>
+      <span class="center">aAx qQ</span>
+    </div>
+    <div class="large font short-line-height">
+      <span class="inline-overlay">
+        <span class="red dotted line top"> </span>
+        <span class="red dotted line bottom"> </span>
+      </span>
+      <span class="green dotted line text-top"> </span>
+      <span class="green dotted line text-bottom"> </span>
+      <span class="blue dotted line baseline"> </span>
+      <span class="center">aAx qQ</span>
+    </div>
+  </div>
+
+</body>
+
+</html>
