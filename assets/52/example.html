@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body>div {
+      margin-bottom: 20px;
+    }
+
+    body>div::after {
+      content: 'x';
+      color: #999;
+    }
+
+    .icon-container,
+    .img-container {
+      background-color: #f2f2f2;
+    }
+
+    .icon-container.fix-height {
+      height: 100px;
+    }
+
+    .bottom {
+      vertical-align: bottom;
+    }
+
+    .top {
+      vertical-align: top;
+    }
+
+    .baseline {
+      vertical-align: baseline;
+    }
+
+    .text-top {
+      vertical-align: text-top;
+    }
+
+    .text-bottom {
+      vertical-align: text-bottom;
+    }
+
+    .middle {
+      vertical-align: middle;
+    }
+
+    .line {
+      display: inline-block;
+      width: 100%;
+      margin-right: -100%;
+      position: relative;
+      z-index: 10;
+      border-top: 1px solid #000;
+    }
+
+    .line.blue {
+      border-color: #0919ff;
+    }
+
+    .line.green {
+      border-color: #16e807;
+    }
+
+    .line.yellow {
+      border-color: #e8ac07;
+    }
+
+    .bigger {
+      font-size: 40px;
+    }
+
+    .inline-block {
+      display: inline-block;
+      outline: 1px solid tomato;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="icon-container">
+    <span class="yellow dotted line middle"> </span>
+    <span class="blue dotted line baseline"> </span>
+    <!-- <span class="green dotted line text-top"> </span>
+    <span class="green dotted line text-bottom"> </span> -->
+    <img src="./20-20.jpg" alt="">
+    <span>为啥对不齐</span>
+  </div>
+  <div class="icon-container fix-height">
+    <span class="yellow dotted line middle"> </span>
+    <span class="blue dotted line baseline"> </span>
+    <!-- <span class="green dotted line text-top"> </span>
+    <span class="green dotted line text-bottom"> </span> -->
+    <img src="./20-20.jpg" alt="">
+    <span>为啥对不齐</span>
+  </div>
+  <div class="img-container">
+    <span class="yellow dotted line middle"> </span>
+    <span class="blue dotted line baseline"> </span>
+    <!-- <span class="green dotted line text-top"> </span>
+    <span class="green dotted line text-bottom"> </span> -->
+    <img src="./300-300.png" alt="">
+    <span>为啥对不齐</span>
+  </div>
+  <div class="" style="background-color: #cccccc;">
+    <img src="./300-300.png" alt="">
+  </div>
+  <style>
+    .d1 {
+      /* height: 100px; */
+      line-height: 100px;
+    }
+
+    .s1 {
+      display: inline-block;
+      border: 1px solid red;
+      vertical-align: text-top;
+    }
+
+    .s2 {
+      font-size: 40px;
+      color: darkcyan;
+      vertical-align: text-top;
+    }
+
+    .img1 {
+      display: inline-block;
+      vertical-align: text-top;
+    }
+  </style>
+  <div class="d1">
+    <span class="green dotted line text-top"> </span>
+    x
+    <span class="s1">
+      <span>spanx</span>
+      <span class="s2">spanx2是我</span>
+    </span>
+    <img class="img1" src="./300-300.png" alt="" />
+  </div>
+  <div class="img-container">
+    <span>为啥对不齐</span>
+    <span class="bigger">大为啥对不齐</span>
+    <div class="inline-block">
+      <span>为啥对不齐</span>
+      <span class="bigger">大为啥对不齐</span>
+    </div>
+    <div class="inline-block" style="height: 50px;width: 50px;">
+
+    </div>
+  </div>
+  <div class="img-container">
+    <div class="inline-block">
+      <div class="inline-block">
+        <span>为啥对不齐</span>
+        <span class="bigger">大为啥对不齐</span>
+      </div>
+      <div class="inline-block">
+        <span class="green dotted line text-top"> </span>
+        <span class="red dotted line top"> </span>
+        <span class="blue dotted line baseline"> </span>
+        <span class="bigger">大为啥对不齐</span>
+        <span>为啥对不齐</span>
+        <span class="bigger">大为啥对不齐</span>
+      </div>
+    </div>
+  </div>
+  <div class="img-container">
+    <span class="green dotted line text-top"> </span>
+    <span class="red dotted line top"> </span>
+    <span class="blue dotted line baseline"> </span>
+    <span class="bigger">
+      <!-- <span class="green dotted line text-top"> </span>
+      <span class="red dotted line top"> </span>
+      <span class="blue dotted line baseline"> </span> -->
+      大为啥对不齐
+    </span>
+    <span>
+      <span class="green dotted line text-top"> </span>
+      <span class="red dotted line top"> </span>
+      <span class="blue dotted line baseline"> </span>
+      为啥对不齐
+    </span>
+    <!-- <span class="bigger">
+      <span class="green dotted line text-top"> </span>
+      <span class="red dotted line top"> </span>
+      <span class="blue dotted line baseline"> </span>
+      为啥对不齐
+    </span> -->
+  </div>
+  <div class="img-container">
+    <span class="green dotted line text-top"> </span>
+    <span class="red dotted line top"> </span>
+    <span class="blue dotted line baseline"> </span>
+    <span class="bigger">
+      <!-- <span class="green dotted line text-top"> </span>
+      <span class="red dotted line top"> </span>
+      <span class="blue dotted line baseline"> </span> -->
+      大为啥对不齐
+    </span>
+    <span class="bigger">
+      <span class="green dotted line text-top"> </span>
+      <span class="red dotted line top"> </span>
+      <span class="blue dotted line baseline"> </span>
+      ABJPyfx
+    </span>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      font-size: 100px;
+      line-height: 200px;
+      font-family: Catamaran;
+    }
+
+    .x::after {
+      content: 'x';
+      color: #999;
+    }
+
+    .container {
+      background-color: #f2f2f2;
+      margin-bottom: 30px;
+    }
+
+    .sub {
+      vertical-align: sub;
+    }
+
+    .super {
+      vertical-align: super;
+    }
+
+    .bottom {
+      vertical-align: bottom;
+    }
+
+    .top {
+      vertical-align: top;
+    }
+
+    .baseline {
+      vertical-align: baseline;
+    }
+
+    .text-top {
+      vertical-align: text-top;
+    }
+
+    .text-bottom {
+      vertical-align: text-bottom;
+    }
+
+    .middle {
+      vertical-align: middle;
+    }
+
+    .sub {
+      vertical-align: sub;
+    }
+
+    .super {
+      vertical-align: super;
+    }
+
+    .line {
+      display: inline-block;
+      width: 100%;
+      margin-right: -100%;
+      position: relative;
+      z-index: 10;
+      border-top: 1px solid #000;
+    }
+
+    .line.blue {
+      border-color: #0919ff;
+    }
+
+    .line.green {
+      border-color: #16e807;
+    }
+
+    .line.yellow {
+      border-color: #e8ac07;
+    }
+
+    .line.red {
+      border-color: #f00008;
+    }
+
+    .line.bbb {
+      border-color: #27e6ff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container x">
+    <span class="green dotted line text-top"> </span>
+    <span class="green dotted line text-bottom"> </span>
+    <span class="red dotted line top"> </span>
+    <span class="red dotted line bottom"> </span>
+    <span class="blue dotted line baseline"> </span>
+    <!-- <span class="yellow dotted line sub"> </span>
+    <span class="yellow dotted line super"> </span> -->
+    <span>
+      Afypx
+    </span>
+    <span>
+      <span class="green dotted line text-top"> </span>
+      <span class="green dotted line text-bottom"> </span>
+      <span class="red dotted line top"> </span>
+      <span class="red dotted line bottom"> </span>
+      <span class="blue dotted line baseline"> </span>
+      <!-- <span class="yellow dotted line sub"> </span>
+      <span class="yellow dotted line super"> </span> -->
+      Afypx
+    </span>
+    <span style="font-size: 20px;">
+      <span class="green dotted line text-top"> </span>
+      <span class="green dotted line text-bottom"> </span>
+      <span class="red dotted line top"> </span>
+      <span class="red dotted line bottom"> </span>
+      <span class="blue dotted line baseline"> </span>
+      Afypx
+    </span>
+  </div>
+
+  <div class="x container">
+    <span class="green dotted line text-top"> </span>
+    <span class="green dotted line text-bottom"> </span>
+    <span class="red dotted line top"> </span>
+    <span class="red dotted line bottom"> </span>
+    <span class="blue dotted line baseline"> </span>
+    <span class="bbb dotted line sub"> </span>
+    <span class="bbb dotted line super"> </span>
+    <span style="font-size:100px;">
+      Ba
+    </span>
+    <span style="display: inline-block;font-size: 20px;vertical-align: text-bottom;">
+      <span class="green dotted line text-top"> </span>
+      <span class="green dotted line text-bottom"> </span>
+      <span class="red dotted line top"> </span>
+      <span class="red dotted line bottom"> </span>
+      <span class="blue dotted line baseline"> </span>
+      <span class="bbb dotted line sub"> </span>
+      <span class="bbb dotted line super"> </span>
+      x
+    </span>
+  </div>
+
+
+</body>
+
+</html>
