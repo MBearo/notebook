@@ -10,6 +10,11 @@
       font-size: 100px;
       line-height: 200px;
       font-family: Catamaran;
+      color: white;
+    }
+
+    .text {
+      background-color: #949494;
     }
 
     .x::after {
@@ -71,83 +76,146 @@
       border-top: 1px solid #000;
     }
 
-    .line.blue {
+    .blue {
       border-color: #0919ff;
+      color: #0919ff;
     }
 
-    .line.green {
+    .green {
       border-color: #16e807;
+      color: #16e807;
     }
 
-    .line.yellow {
+    .yellow {
       border-color: #e8ac07;
+      color: #e8ac07;
     }
 
-    .line.red {
+    .red {
       border-color: #f00008;
+      color: #f00008;
     }
 
-    .line.bbb {
+    .blue2 {
       border-color: #27e6ff;
+      color: #27e6ff;
+    }
+
+    .demo {
+      font-size: 14px;
+      line-height: initial;
+    }
+
+    .blocks {
+      font-size: 20px;
+      color: #333;
+      line-height: initial;
+    }
+
+    .block {
+      display: inline-block;
+      border: 1px solid tomato;
+      height: 80px;
+      width: 200px;
+    }
+
+    .block .bigger {
+      font-size: 40px;
+    }
+
+    .first::first-letter {
+      color: #c69c6d;
+      -webkit-initial-letter: 3 1;
+      /*第一个表示行高，第二个表示沉度*/
     }
   </style>
 </head>
 
 <body>
+  <div class="demo">
+    <div class="red">top/bottom</div>
+    <div class="green">text-top/text-bottom</div>
+    <div class="blue2">sub/super</div>
+    <div class="blue">baseline</div>
+  </div>
   <div class="container x">
-    <span class="green dotted line text-top"> </span>
-    <span class="green dotted line text-bottom"> </span>
-    <span class="red dotted line top"> </span>
-    <span class="red dotted line bottom"> </span>
-    <span class="blue dotted line baseline"> </span>
-    <!-- <span class="yellow dotted line sub"> </span>
-    <span class="yellow dotted line super"> </span> -->
-    <span>
-      Afypx
-    </span>
-    <span>
+    <span style="display: inline-block;">
       <span class="green dotted line text-top"> </span>
       <span class="green dotted line text-bottom"> </span>
       <span class="red dotted line top"> </span>
       <span class="red dotted line bottom"> </span>
       <span class="blue dotted line baseline"> </span>
-      <!-- <span class="yellow dotted line sub"> </span>
-      <span class="yellow dotted line super"> </span> -->
-      Afypx
-    </span>
-    <span style="font-size: 20px;">
-      <span class="green dotted line text-top"> </span>
-      <span class="green dotted line text-bottom"> </span>
-      <span class="red dotted line top"> </span>
-      <span class="red dotted line bottom"> </span>
-      <span class="blue dotted line baseline"> </span>
-      Afypx
+      <span class="blue2 dotted line sub"> </span>
+      <span class="blue2 dotted line super"> </span>
+      <span class="text">
+        Bfyx
+      </span>
+
+      <!-- <span class="text" style="font-size: 50px;">
+        Bfyx
+      </span> -->
     </span>
   </div>
-
   <div class="x container">
     <span class="green dotted line text-top"> </span>
     <span class="green dotted line text-bottom"> </span>
     <span class="red dotted line top"> </span>
     <span class="red dotted line bottom"> </span>
     <span class="blue dotted line baseline"> </span>
-    <span class="bbb dotted line sub"> </span>
-    <span class="bbb dotted line super"> </span>
-    <span style="font-size:100px;">
+    <span class="blue2 dotted line sub"> </span>
+    <span class="blue2 dotted line super"> </span>
+    <span class="text" style="font-size:100px;">
       Ba
     </span>
-    <span style="display: inline-block;font-size: 20px;vertical-align: text-bottom;">
+    <span style="display: inline-block;font-size: 20px;vertical-align: text-bottom;" class="text">
       <span class="green dotted line text-top"> </span>
       <span class="green dotted line text-bottom"> </span>
       <span class="red dotted line top"> </span>
       <span class="red dotted line bottom"> </span>
       <span class="blue dotted line baseline"> </span>
-      <span class="bbb dotted line sub"> </span>
-      <span class="bbb dotted line super"> </span>
+      <span class="blue2 dotted line sub"> </span>
+      <span class="blue2 dotted line super"> </span>
       x
     </span>
   </div>
-
+  <div class="blocks">
+    <div class="block" style="height: 20px;"></div>
+    <div class="block" style="height:100px;"></div>
+    <div class="block"></div>
+    <div class="block x">
+      Bfyx Bfyx Bfyx Bfyx Bfyx Bfyx Bfyx Bfyx
+      <span class="green dotted line text-top"> </span>
+      <span class="green dotted line text-bottom"> </span>
+      <span class="red dotted line top"> </span>
+      <span class="red dotted line bottom"> </span>
+      <span class="blue dotted line baseline"> </span>
+    </div>
+    <div class="block x" style="writing-mode: vertical-lr;height: initial;">
+      Bfyx Bfyx Bfyx Bfyx Bfyx Bfyx Bfyx Bfyx
+    </div>
+    <div class="block">
+      <span class="green dotted line text-top"> </span>
+      <span class="green dotted line text-bottom"> </span>
+      <span class="red dotted line top"> </span>
+      <span class="red dotted line bottom"> </span>
+      <span class="blue dotted line baseline"> </span>
+      Bfyx
+      <span class="bigger">Bfyx</span>
+    </div>
+  </div>
+  <div class="blocks">
+    <div class="block"></div>
+    <div class="block">
+      <div>Bfyx Bfyx Bfyx</div>
+      <div>Bfyx Bfyx Bfyx</div>
+    </div>
+    <div class="block">
+      <div style="float: left;">Bfyx</div>
+      <div>Bfyx Bfyx Bfyx</div>
+    </div>
+    <iframe src="https://m.lehe.com" frameborder="0"></iframe>
+    <img src="./300-300.png" alt="">
+  </div>
 
 </body>
 
