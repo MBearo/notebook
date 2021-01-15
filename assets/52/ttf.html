@@ -10,7 +10,11 @@
 
 <body>
   <input id="file" type="file">
-  <canvas id="preview"></canvas>
+  <div style="display: flex;">
+    <span style="font-size: 100px;font-family: Catamaran;">Bfyx</span>
+    <canvas id="preview" width="600" height="300"></canvas>
+  </div>
+  <div id="os2"></div>
   <script>
     const file_input = document.getElementById('file')
     const readFile = file => new Promise((resolve, reject) => {
@@ -23,21 +27,28 @@
       const file = await readFile(file_input.files[0])
       const font = opentype.parse(file);
       console.log(font);
-      var previewCanvas = document.getElementById('preview');
-      var previewCtx = previewCanvas.getContext("2d");
-      previewCtx.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
-      font.draw(previewCtx, textToRender, 0, 32, fontSize, {
-        kerning: true,
-        features: [
-          /**
-           * these 4 features are required to render Arabic text properly
-           * and shouldn't be turned off when rendering arabic text.
-           */
-          { script: 'arab', tags: ['init', 'medi', 'fina', 'rlig'] },
-          { script: 'latn', tags: ['liga', 'rlig'] }
-        ]
-      });
+      document.getElementById('os2').innerText=JSON.stringify(font.tables.os2,null,2) 
+      // previewCtx.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
+      // font.draw(previewCtx, 'textToRender', 0, 32, 32, {
+      //   kerning: true,
+      //   features: [
+      //     /**
+      //      * these 4 features are required to render Arabic text properly
+      //      * and shouldn't be turned off when rendering arabic text.
+      //      */
+      //     { script: 'arab', tags: ['init', 'medi', 'fina', 'rlig'] },
+      //     { script: 'latn', tags: ['liga', 'rlig'] }
+      //   ]
+      // });
     })
+    var previewCanvas = document.getElementById('preview');
+    var previewCtx = previewCanvas.getContext("2d");
+
+    
+
+    previewCtx.font = "100px Catamaran";
+    previewCtx.fillText("Bfyx", 0, 110)
+
   </script>
 </body>
 
