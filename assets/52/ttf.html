@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/opentype.js@latest/dist/opentype.min.js"></script>
+</head>
+
+<body>
+  <input id="file" type="file">
+  <canvas id="preview"></canvas>
+  <script>
+    const file_input = document.getElementById('file')
+    const readFile = file => new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsArrayBuffer(file);
+    })
+    file_input.addEventListener('change', async e => {
+      const file = await readFile(file_input.files[0])
+      const font = opentype.parse(file);
+      console.log(font);
+      var previewCanvas = document.getElementById('preview');
+      var previewCtx = previewCanvas.getContext("2d");
+      previewCtx.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
+      font.draw(previewCtx, textToRender, 0, 32, fontSize, {
+        kerning: true,
+        features: [
+          /**
+           * these 4 features are required to render Arabic text properly
+           * and shouldn't be turned off when rendering arabic text.
+           */
+          { script: 'arab', tags: ['init', 'medi', 'fina', 'rlig'] },
+          { script: 'latn', tags: ['liga', 'rlig'] }
+        ]
+      });
+    })
+  </script>
+</body>
+
+</html>
