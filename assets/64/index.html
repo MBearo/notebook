@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    img {
+      width: 300px;
+    }
+    .block{
+      height: 200px;
+      width: 200px;
+    }
+    .block.big{
+      height: 300px;
+      width: 300px;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <img src="./bird.jpg">
+    <img src="./orangutan.jpg" style="margin-left: -200px;">
+  </div>
+  <div>
+    <div class="block" style="background-color: green;"></div>
+    <div class="block" style="background-color: red;margin: -130px 0 0 30px;"></div>
+  </div>
+  <!-- <div>
+    <div class="block" style="position: fixed;z-index: 1;background-color: green;">
+      <div class="block" style="position: fixed;z-index: 3;background-color: red;"></div>
+    </div>
+    <div class="block" style="position: fixed;z-index: 2;background-color: yellow;"></div>
+  </div> -->
+  <!-- <div>
+    <div class="block big" style="background-color: green;">
+      <div class="block" style="background-color: yellow;"></div>
+      <div class="block" style="background-color: red;"></div>
+    </div>
+    <div class="block big" style="background-color: grey;margin: -130px 0 0 30px;">
+
+    </div>
+  </div> -->
+  <div>
+    <img src="./bird.jpg" style="transform: scale(1.1);">
+    <img src="./orangutan.jpg" style="margin-left: -200px;position: relative;z-index: 0;">
+  </div>
+  <div>
+    <img src="./orangutan.jpg" style="position: relative;z-index: 0;">
+    <img src="./bird.jpg" style="transform: scale(1.1);margin-left: -200px;">
+  </div>
+  <div>
+    <img src="./bird.jpg" style="transform: scale(1.1);">
+    <img src="./orangutan.jpg" style="margin-left: -200px;position: relative;z-index: 1;">
+  </div>
+  <div>
+    <img src="./orangutan.jpg" style="position: relative;z-index: 1;">
+    <img src="./bird.jpg" style="transform: scale(1.1);margin-left: -200px;">
+  </div>
+  <!-- <div>
+    <img src="./bird.jpg" style="position: fixed;">
+    <img src="./orangutan.jpg" >
+  </div>
+  <div>
+    <img src="./bird.jpg" style="position: relative;z-index:0;">
+    <img src="./orangutan.jpg" style="margin-left: -200px;position: relative;z-index: 0;">
+  </div> -->
+</body>
+
+</html>
