@@ -16,7 +16,8 @@ Array.prototype.myReduce = function (callback, initialValue) {
 }
 
 // 首先callback有第四个参数
-// 直接原型链上加，会使这个方法可以被枚举
+// 直接原型链上加，会使这个方法可以被枚举。
+// Object.defineProperty 的 configurable 和 enumerable 默认是 false
 // 还有一堆错误没判断和处理
 
 if (!Array.prototype.myReduce) {
