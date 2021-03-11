@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"
+    integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ=="
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <button id="btn">btn</button>
+  <script>
+    let id = 0
+    function aaa() {
+      console.log('ssss', id)
+    }
+    function bbb() {
+      id++
+      console.log(id)
+    }
+    
+    document.getElementById('btn').addEventListener('click', _.debounce(aaa, 300, { leading: false, trailing: true }))
+    document.getElementById('btn').addEventListener('click', bbb)
+  </script>
+</body>
+
+</html>
