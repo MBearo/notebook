@@ -47,6 +47,7 @@ function debounce(func, wait, immediate) {
     if (timer) clearTimeout(timer)
     //第一次立即执行后，就不应该再有延迟再次执行这个函数
     if (immediate && (!timer)) {
+      timer = 1
       func.apply(this, arg)
     } else {
       timer = setTimeout(() => {
@@ -55,6 +56,7 @@ function debounce(func, wait, immediate) {
     }
   }
 }
+
 /**
  * @leading default: false
  * @trailing default: true
@@ -63,3 +65,4 @@ function debounce(func, wait, immediate) {
 
 // 如果 leading trailing 都为 false，那么就不触发了
 // 如果 leading trailing 都为 true，那么 leading 出发的是 上一次 trailing 触发的
+
