@@ -6,7 +6,7 @@ Function.prototype.myApply = Function.prototype.myApply || function (obj, arr) {
     obj = Object(obj)
   }
   var id = 0
-  while (obj[id]) {
+  while (obj['fn' + id]) {
     id++
   }
   obj['fn' + id] = this
@@ -14,7 +14,7 @@ Function.prototype.myApply = Function.prototype.myApply || function (obj, arr) {
   for (var i = 0; i < arr.length; i++) {
     args.push('arr[' + i + ']')
   }
-  var result = eval('obj["fn"' + id + '](' + args + ')')
+  var result = eval('obj["fn' + id + '"](' + args + ')')
   delete obj['fn' + id]
   return result
 }

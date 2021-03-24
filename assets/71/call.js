@@ -76,7 +76,7 @@ Function.prototype.myCall = Function.prototype.myCall || function (obj) {
     obj = Object(obj)
   }
   var id = 0
-  while (obj[id]) {
+  while (obj['fn' + id]) {
     id++
   }
   obj['fn' + id] = this
