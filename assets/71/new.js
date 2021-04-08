@@ -58,7 +58,7 @@ var b = new B('nihao')
 var c = new C('nihao')
 var d = new D('nihao')
 var e = new E('nihao')
-var f = new F('nihao')
+var f = new F('nihao') 
 var g = new G('nihao')
 var h = new H('nihao')
 

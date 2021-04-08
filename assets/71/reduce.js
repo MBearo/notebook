@@ -59,17 +59,38 @@ if (!Array.prototype.myReduce) {
   })
 }
 
+// 如果第二个参数传undefined，undefined这个值也会被塞到数组前
+if (!Array.prototype.myReduce) {
+  Object.defineProperty(Array.prototype, 'myReduce', {
+    value: function (callback, initialValue) {
+      var arr = this.slice()
+      var arg = Array.prototype.slice.call(arguments)
+      if (arg.length > 1) {
+        arr.unshift(initialValue)
+      }
+      var base = arr[0]
+      for (var i = 0; i < arr.length - 1; i++) {
+        base = callback(base, arr[i + 1], i, this)
+      }
+      return base
+    }
+  })
+}
+
 ;[2, 3, 4].reduce(() => { })
 ;[2, 3, 4].myReduce(() => { })
 
 ;[2, 3, 4].reduce((acc, cur) => acc)
-;[2, 3, 4].reduce((acc, cur) => cur)
-
 ;[2, 3, 4].myReduce((acc, cur) => acc)
+
+;[2, 3, 4].reduce((acc, cur) => cur)
 ;[2, 3, 4].myReduce((acc, cur) => cur)
 
 ;[2, 3, 4].reduce((acc, cur) => acc, 6)
-;[2, 3, 4].reduce((acc, cur) => cur, 6)
-
 ;[2, 3, 4].myReduce((acc, cur) => acc, 6)
+
+;[2, 3, 4].reduce((acc, cur) => cur, 6)
 ;[2, 3, 4].myReduce((acc, cur) => cur, 6)
+
+;[2, 3, 4].reduce((acc, cur) => acc + cur, undefined)
+;[2, 3, 4].myReduce((acc, cur) => acc + cur, undefined)

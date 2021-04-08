@@ -121,7 +121,7 @@ Function.prototype.myBind = Function.prototype.myBind || function (ctx) {
 }
 // 也对
 const pipe = (...args) => x => args.reduce((acc, cur) => cur(acc(x)))
-// 最后面那个参数没结构
+// 最后面那个参数没解构
 const compose = (...args) => (...arg) => args.reduceRight((acc, cur) => cur(acc(arg)))
 const compose = (...args) => (...arg) => args.reduceRight((acc, cur) => cur(acc(...arg)))
 
