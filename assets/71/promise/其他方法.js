@@ -88,10 +88,10 @@ MyPromise.prototype.then = function (onFulfilled, onRejected) {
   onRejected = typeof onRejected === 'function' ? onRejected : error => { throw error }
   // 返回新的 promise 2.2.7
   const promise2 = new MyPromise((resolve, reject) => {
-    if (this.status === FULFILLED) {
+    const fulfilledMicrotask = () => {
       // 2.2.2
       // 2.2.4
-      setTimeout(() => {
+      queueMicrotask(() => {
         try {
           // 2.2.7.1
           const x = onFulfilled(this.value)
@@ -102,9 +102,9 @@ MyPromise.prototype.then = function (onFulfilled, onRejected) {
         }
       })
     }
-    if (this.status === REJECTED) {
+    const rejectedMicrotask = () => {
       // 2.2.3
-      setTimeout(() => {
+      queueMicrotask(() => {
         try {
           const x = onRejected(this.reason)
           resolvePromise(promise2, x, resolve, reject)
@@ -113,52 +113,116 @@ MyPromise.prototype.then = function (onFulfilled, onRejected) {
         }
       })
     }
+    if (this.status === FULFILLED) {
+      fulfilledMicrotask()
+    }
+    if (this.status === REJECTED) {
+      rejectedMicrotask()
+    }
     // 异步的时候将回调存起来
     if (this.status === PENDING) {
-      this.onFulfilledFunc.push(() => {
-        setTimeout(() => {
-          try {
-            const x = onFulfilled(this.value)
-            resolvePromise(promise2, x, resolve, reject)
-          } catch (error) {
-            reject(error)
-          }
-        })
-      })
-      this.onRejectedFunc.push(() => {
-        setTimeout(() => {
-          try {
-            const x = onRejected(this.reason)
-            resolvePromise(promise2, x, resolve, reject)
-          } catch (error) {
-            reject(error)
-          }
-        })
-      })
+      this.onFulfilledFunc.push(fulfilledMicrotask)
+      this.onRejectedFunc.push(rejectedMicrotask)
     }
   })
   return promise2
 }
 
-// 遇到这种情况，resolve 里是一个 promise，那么就需要
-// if (value instanceof MyPromise) {return value.then(resolve, reject)}
-var p1 = new MyPromise(function (resolve, reject) {
-  setTimeout(function () {
-    resolve('ok')
-  }, 2000)
-})
-var p2 = new MyPromise(function (resolve, reject) {
-  resolve(p1) // resolve了一个promise
-})
-
-p2.then(function (res) {
-  console.log(res)
-})
-console.log(p1)
-console.log(p2)
-// Promise { <pending> }
-// Promise { <pending> }
-// “ok"
+MyPromise.resolve = function (data) {
+  return new MyPromise(resolve => {
+    resolve(data)
+  })
+}
+MyPromise.reject = function (data) {
+  return new MyPromise((resolve, reject) => {
+    reject(data)
+  })
+}
+MyPromise.prototype.catch = function (errCallBack) {
+  return this.then(null, errCallBack)
+}
+MyPromise.prototype.finally = function (callBack) {
+  return this.then(value => {
+    return MyPromise.resolve(callBack()).then(() => value)
+  }, reason => {
+    return MyPromise.resolve(callBack()).then(() => { throw reason })
+  })
+}
+MyPromise.all = function (iterable) {
+  // Promise.all 的参数是一个可迭代对象，如 Array 、 String、Map、Set、包含length属性的对象等，所以应该兼容一下参数。
+  const array = Array.from(iterable)
+  let resolveNum = 0
+  const result = []
+  return new MyPromise((resolve, reject) => {
+    for (let i = 0; i < array.length; i++) {
+      const element = array[i]
+      MyPromise.resolve(element).then(value => {
+        result[i] = value
+        resolveNum++
+        if (resolveNum === array.length) {
+          resolve(result)
+        }
+      }, reason => {
+        reject(reason)
+      })
+    }
+  })
+}
+// 等所有都settled，然后返回所有promise状态
+MyPromise.allSettled = function (iterable) {
+  const array = Array.from(iterable)
+  const result = []
+  let settledNum = 0
+  return new MyPromise(resolve => {
+    for (let i = 0; i < array.length; i++) {
+      const element = array[i]
+      MyPromise.resolve(element).then(value => {
+        settledNum++
+        result[i] = value
+      }, err => {
+        settledNum++
+        result[i] = err
+      }).finally(() => {
+        if (settledNum === array.length) {
+          resolve(result)
+        }
+      })
+    }
+  })
+}
+// 返回第一个settled（已经结束）的方法的状态
+MyPromise.race = function (iterable) {
+  const array = Array.from(iterable)
+  return new MyPromise((resolve, reject) => {
+    for (let i = 0; i < array.length; i++) {
+      const element = array[i]
+      MyPromise.resolve(element).then(resolve, reject)
+    }
+  })
+}
+// 返回第一个 fulfilled 的方法，如果没有，返回所有的 rejected 的 reason 的数组
+MyPromise.any = function (iterable) {
+  const array = Array.from(iterable)
+  let rejectNum = 0
+  const result = []
+  return new MyPromise((resolve, reject) => {
+    for (let i = 0; i < array.length; i++) {
+      const element = array[i]
+      MyPromise.resolve(element).then(resolve, err => {
+        rejectNum++
+        result[i](err)
+        if (rejectNum === array.length) {
+          reject(result)
+        }
+      })
+    }
+  })
+}
+MyPromise.try = function (func) {
+  return new MyPromise((resolve, reject) => {
+    resolve(func())
+  })
+}
 
 // 测试
 MyPromise.deferred = function () {
