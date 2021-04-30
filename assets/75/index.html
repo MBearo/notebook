@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Realm</title>
+  <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g6-3.5.10/dist/g6.min.js"></script>
+  <style>
+    #Realm {
+      width: 600px;
+      height: 600px;
+    }
+  </style>
+</head>
+<body>
+  <div id="Realm"></div>
+  <script>
+    const objs = [Object,
+      Array, Int8Array, Uint8Array, Int16Array, Uint16Array, Int32Array, Uint32Array, Float32Array, Float64Array, BigInt64Array, BigUint64Array,
+      Function,
+      Date,
+      String,
+      Number, BigInt,
+      // Math,
+      RegExp,
+      Boolean,
+      Map, Set, WeakMap, WeakSet,
+      // JSON,
+      Error, TypeError, EvalError, RangeError, ReferenceError, SyntaxError, URIError,
+      DataView,
+      // Atomics,
+      ArrayBuffer,
+      Symbol,
+      Promise
+      // Proxy,
+      // Reflect
+    ]
+    const realm = []
+    for (let val of objs) {
+      console.log(val.prototype)
+      if (val.prototype) {
+        realm.push(val.prototype)
+      }
+    }
+    console.log(realm)
+    const realmObj = {
+      name: 'Object',
+      children: [{
+        name: 'Array',
+        children: [{name: 'Int8Array'}, {name: 'Uint8Array'}, {name: 'Int16Array'}, {name: 'Uint16Array'}, {name: 'Int32Array'}, {name: 'Uint32Array'}, {name: 'Float32Array'}, {name: 'Float64Array'}, {name: 'BigInt64Array'}, {name: 'BigUint64Array'}],
+      }, {
+        name: 'Date'
+      }, {
+        name: 'String'
+      }, {
+        name: 'Number'
+      }, {
+        name: 'BigInt'
+      }, {
+        name: 'RegExp'
+      }, {
+        name: 'Boolean'
+      }, {
+        name: 'Map'
+      }, {
+        name: 'Set'
+      }, {
+        name: 'WeakMap'
+      }, {
+        name: 'WeakSet'
+      }, {
+        name: 'Error',
+        children: [{name: 'TypeError'}, {name: 'EvalError'}, {name: 'RangeError'}, {name: 'ReferenceError'}, {name: 'SyntaxError'}, {name: 'URIError'}]
+      }, {
+        name: 'DataView'
+      }, {
+        name: 'ArrayBuffer'
+      }, {
+        name: 'Symbol'
+      }, {
+        name: 'Promise'
+      }]
+    }
+    const graph = new G6.TreeGraph({
+      container: 'Realm',
+      width: 600,
+      height: 600,
+      linkCenter: true,
+      modes: {
+        default: [
+          {
+            type: 'collapse-expand',
+            onChange: function onChange(item, collapsed) {
+              const data = item.get('model').data;
+              data.collapsed = collapsed;
+              return true;
+            },
+          },
+          'drag-canvas',
+          'zoom-canvas',
+        ],
+      },
+      defaultNode: {
+        size: 26,
+        style: {
+          fill: '#C6E5FF',
+          stroke: '#5B8FF9',
+        },
+      },
+      defaultEdge: {
+        style: {
+          stroke: '#A3B1BF',
+        },
+      },
+      layout: {
+        type: 'dendrogram',
+        direction: 'LR',
+        nodeSep: 20,
+        rankSep: 100,
+        radial: true,
+      },
+    });
+
+    graph.node(function(node) {
+      return {
+        label: node.name,
+      };
+    });
+
+    graph.data(realmObj);
+    graph.render();
+    graph.fitView();
+  </script>
+</body>
+</html>

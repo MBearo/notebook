@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Realm</title>
+</head>
+<body>
+    <div id="container"></div>
+    <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g6-3.5.10/dist/g6.min.js"></script>
+    <script>
+        let data = {
+          "id": "Realm Record",
+          "children": [
+            {
+              "id": "[[Intrinsics]]",
+              "children": [
+                { "id": "%Array%" },
+                { "id": "%ArrayBuffer%" },
+                { "id": "%ArrayBufferPrototype%" },
+                { "id": "%ArrayIteratorPrototype%" },
+                { "id": "%ArrayPrototype%" },
+                { "id": "%ArrayProto_entries%" },
+                { "id": "%ArrayProto_forEach%" },
+                { "id": "%ArrayProto_keys%" },
+                { "id": "%ArrayProto_values%" },
+                { "id": "%AsyncFromSyncIteratorPrototype%" },
+                { "id": "%AsyncFunction%" },
+                { "id": "%AsyncFunctionPrototype%" },
+                { "id": "%AsyncGenerator%" },
+                { "id": "%AsyncGeneratorFunction%" },
+                { "id": "%AsyncGeneratorPrototype%" },
+                { "id": "%AsyncIteratorPrototype%" },
+                { "id": "%Atomics%" },
+                { "id": "%BigInt%" },
+                { "id": "%BigInt64Array%" },
+                { "id": "%BigUint64Array%" },
+                { "id": "%Boolean%" },
+                { "id": "%BooleanPrototype%" },
+                { "id": "%DataView%" },
+                { "id": "%DataViewPrototype%" },
+                { "id": "%Date%" },
+                { "id": "%DatePrototype%" },
+                { "id": "%decodeURI%" },
+                { "id": "%decodeURIComponent%" },
+                { "id": "%encodeURI%" },
+                { "id": "%encodeURIComponent%" },
+                { "id": "%Error%" },
+                { "id": "%ErrorPrototype%" },
+                { "id": "%eval%" },
+                { "id": "%EvalError%" },
+                { "id": "%EvalErrorPrototype%" },
+                { "id": "%Float32Array%" },
+                { "id": "%Float32ArrayPrototype%" },
+                { "id": "%Float64Array%" },
+                { "id": "%Float64ArrayPrototype%" },
+                { "id": "%ForInIteratorPrototype%" },
+                { "id": "%Function%" },
+                { "id": "%FunctionPrototype%" },
+                { "id": "%Generator%" },
+                { "id": "%GeneratorFunction%" },
+                { "id": "%GeneratorPrototype%" },
+                { "id": "%Int8Array%" },
+                { "id": "%Int8ArrayPrototype%" },
+                { "id": "%Int16Array%" },
+                { "id": "%Int16ArrayPrototype%" },
+                { "id": "%Int32Array%" },
+                { "id": "%Int32ArrayPrototype%" },
+                { "id": "%isFinite%" },
+                { "id": "%isNaN%" },
+                { "id": "%IteratorPrototype%" },
+                { "id": "%JSON%" },
+                { "id": "%JSONParse%" },
+                { "id": "%JSONStringify%" },
+                { "id": "%Map%" },
+                { "id": "%MapIteratorPrototype%" },
+                { "id": "%MapPrototype%" },
+                { "id": "%Math%" },
+                { "id": "%Number%" },
+                { "id": "%NumberPrototype%" },
+                { "id": "%Object%" },
+                { "id": "%ObjectPrototype%" },
+                { "id": "%ObjProto_toString%" },
+                { "id": "%ObjProto_valueOf%" },
+                { "id": "%parseFloat%" },
+                { "id": "%parseInt%" },
+                { "id": "%Promise%" },
+                { "id": "%PromisePrototype%" },
+                { "id": "%PromiseProto_then%" },
+                { "id": "%Promise_all%" },
+                { "id": "%Promise_reject%" },
+                { "id": "%Promise_resolve%" },
+                { "id": "%Proxy%" },
+                { "id": "%RangeError%" },
+                { "id": "%RangeErrorPrototype%" },
+                { "id": "%ReferenceError%" },
+                { "id": "%ReferenceErrorPrototype%" },
+                { "id": "%Reflect%" },
+                { "id": "%RegExpPrototype%" },
+                { "id": "%RegExpStringIteratorPrototype%" },
+                { "id": "%Set%" },
+                { "id": "%SetIteratorPrototype%" },
+                { "id": "%SetPrototype%" },
+                { "id": "%SharedArrayBuffer%" },
+                { "id": "%SharedArrayBufferPrototype%" },
+                { "id": "%String%" },
+                { "id": "%StringIteratorPrototype%" },
+                { "id": "%StringPrototype%" },
+                { "id": "%Symbol%" },
+                { "id": "%SymbolPrototype%" },
+                { "id": "%SyntaxError%" },
+                { "id": "%SyntaxErrorPrototype%" },
+                { "id": "%ThrowTypeError%" },
+                { "id": "%TypedArray%" },
+                { "id": "%TypedArrayPrototype%" },
+                { "id": "%TypeError%" },
+                { "id": "%TypeErrorPrototype%" },
+                { "id": "%Uint8Array%" },
+                { "id": "%Uint8ArrayPrototype%" },
+                { "id": "%Uint8ClampedArray%" },
+                { "id": "%Uint8ClampedArrayPrototype%" },
+                { "id": "%Uint16Array%" },
+                { "id": "%Uint16ArrayPrototype%" },
+                { "id": "%Uint32Array%" },
+                { "id": "%Uint32ArrayPrototype%" },
+                { "id": "%URIError%" },
+                { "id": "%URIErrorPrototype%" },
+                { "id": "%WeakMap%" },
+                { "id": "%WeakMapPrototype%" },
+                { "id": "%WeakSet%" },
+                { "id": "%WeakSetPrototype%" }
+              ]
+            },
+            {
+              "id": "[[GlobalObject]]"
+            },
+            {
+              "id": "[[GlobalEnv]]"
+            },
+            {
+              "id": "[[TemplateMap]]"
+            },
+            {
+              "id": "[[HostDefined]]"
+            }
+          ]
+        }
+
+
+        const width = document.getElementById('container').scrollWidth;
+        const height = document.getElementById('container').scrollHeight || 1500;
+        const graph = new G6.TreeGraph({
+          container: 'container',
+          width,
+          height,
+          modes: {
+            default: [
+              {
+                type: 'collapse-expand',
+                onChange: function onChange(item, collapsed) {
+                  const data = item.get('model').data;
+                  data.collapsed = collapsed;
+                  return true;
+                },
+              },
+              'drag-canvas',
+              'zoom-canvas',
+            ],
+          },
+          defaultNode: {
+            size: 20,
+            anchorPoints: [
+              [0, 0.5],
+              [1, 0.5],
+            ],
+            style: {
+              fill: '#c063e8',
+              stroke: '#5B8FF9',
+            },
+          },
+          defaultEdge: {
+            type: 'cubic-horizontal',
+            style: {
+              stroke: '#A3B1BF',
+            },
+          },
+          layout: {
+            type: 'dendrogram',
+            direction: 'LR', // H / V / LR / RL / TB / BT
+            nodeSep: 30,
+            rankSep: 100,
+          },
+        });
+
+        graph.node(function(node) {
+          return {
+            label: node.id,
+            labelCfg: {
+              position: node.children && node.children.length > 0 ? 'left' : 'right',
+              offset: 5,
+            },
+          };
+        });
+
+        graph.data(data);
+        graph.render();
+        graph.fitView();
+    </script>
+</body>
+</html>
