@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+            width: 132px;
+            flex-wrap: wrap;
+        }
+
+        .piece {
+            height: 40px;
+            width: 40px;
+            margin: 2px;
+            background-color: #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .o::after {
+            content: 'o';
+        }
+
+        .x::after {
+            content: 'x';
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let user = 1
+        let gameStatus = true
+        let list = [
+            0, 0, 0,
+            0, 0, 0,
+            0, 0, 0
+        ]
+        function gameOver(user) {
+            gameStatus = false
+            const container = document.createElement('div')
+            container.textContent = `${user}获胜`
+            document.body.appendChild(container)
+        }
+        function move(list, i) {
+            if (gameStatus && list[i] === 0) {
+                list[i] = user
+                render(list)
+                if (check(list, user)) {
+                    gameOver(user)
+                }
+                user = 3 - user
+            }
+        }
+        function render(list) {
+            // 也可以 document.body.removeChild(document.querySelector('.container'))
+            const oldContainer = document.querySelector('.container')
+            oldContainer && oldContainer.remove()
+
+            // 声明一个容器
+            const container = document.createElement('div')
+            // 加上类名
+            container.classList.add('container')
+
+            for (let i = 0; i < list.length; i++) {
+                const piece = document.createElement('div')
+                piece.classList.add('piece')
+                if (list[i] > 0) {
+                    piece.classList.add(list[i] === 1 ? 'x' : 'o')
+                }
+                piece.addEventListener('click', () => {
+                    move(list, i)
+                })
+                container.appendChild(piece)
+            }
+            document.body.appendChild(container)
+        }
+        function check(pattern, color) {
+            for (let y = 0; y < 3; y++) {
+                let win = true;
+                for (let x = 0; x < 3; x++) {
+                    if (pattern[y * 3 + x] !== color) {
+                        win = false;
+                        break;
+                    }
+                }
+                if (win) return true;
+            }
+
+            for (let y = 0; y < 3; y++) {
+                let win = true;
+                for (let x = 0; x < 3; x++) {
+                    if (pattern[x * 3 + y] !== color) {
+                        win = false;
+                        break;
+                    }
+                }
+                if (win) return true;
+            }
+
+            {   // 正对角线
+                let win = true;
+                for (let i = 0; i < 3; i++) {
+                    if (pattern[i * 3 + i] !== color) {
+                        win = false;
+                        break;
+                    }
+                }
+                if (win) return true;
+            }
+
+            {   // 反对角线
+                let win = true;
+                for (let i = 0; i < 3; i++) {
+                    if (pattern[i * 3 + 2 - i] !== color) {
+                        win = false;
+                        break;
+                    }
+                }
+                if (win) return true;
+            }
+
+            return false;
+        }
+        render(list)
+    </script>
+</body>
+
+</html>
